@@ -15,6 +15,16 @@ public class PlayerController : MonoBehaviour
         _move = GetComponent<MovementController>();
     }
 
+    public void DisableMovement()
+    {
+        _move.DisableMovement();
+    }
+
+    public void EnableMovement()
+    {
+        _move.EnableMovement();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

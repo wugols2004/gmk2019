@@ -9,6 +9,7 @@ public class HumanController : MonoBehaviour, IAnimController
     private void Awake()
     {
         _particles = GetComponentInChildren<ParticleSystem>();
+        _particles.Stop();
     }
 
     public void UpdateMovementAnim(Vector2 velocity)
@@ -16,11 +17,11 @@ public class HumanController : MonoBehaviour, IAnimController
         if((velocity.x != 0 || velocity.y != 0) && !_particles.isPlaying)
         {
             _particles.Play(true);
-            Debug.Log("particle play");
+            //Debug.Log("particle play");
         }
         else if ((velocity.x == 0 && velocity.y == 0) && _particles.isPlaying)
         {
-            Debug.Log("particle stop " + velocity.x + " " + velocity.y + " " + _particles.isPlaying);
+            //Debug.Log("particle stop " + velocity.x + " " + velocity.y + " " + _particles.isPlaying);
             _particles.Stop();            
         }
     }

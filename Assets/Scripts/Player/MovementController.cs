@@ -41,9 +41,23 @@ public class MovementController : MonoBehaviour
         return velocity;
     }
 
+    public void DisableMovement()
+    {
+        isMovable = false;
+        velocity = Vector2.zero;
+    }
+
+    public void EnableMovement()
+    {
+        isMovable = true;
+        velocity = Vector2.zero;
+    }
+
     private void Update()
     {
-        if (!isMovable) { return; };
+        if (!isMovable) {
+            return;
+        };
 
 
         float horiInput = Input.GetAxisRaw("Horizontal");

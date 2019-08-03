@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState
+{
+    TITLE,
+    GAME,
+    GAMEOVER
+}
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
@@ -16,26 +23,52 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject GameOverScreen;
 
+    GameState state;
 
     void StartTitleScreen()
     {
-
+        TitleScreen.SetActive(true);
+        player.DisableMovement();
     }
 
     void ExitTitleScreen ()
     {
+        TitleScreen.SetActive(false);
+        player.EnableMovement();
+    }
 
+    void ChangeState(GameState state)
+    {
+        this.state = state;
+        switch (state)
+        {
+            case GameState.TITLE:
+                StartTitleScreen();
+                break;
+            case GameState.GAME:
+                ExitTitleScreen();
+               
+                break;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ChangeState(GameState.TITLE);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (state)
+        {
+            case GameState.TITLE:
+                if(Input.anyKey)
+                {
+                    ChangeState(GameState.GAME);
+                }
+                break;
+        }
     }
 }
