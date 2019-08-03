@@ -79,9 +79,13 @@ public class MovementController : MonoBehaviour
 
         //transform.position = new Vector2(newXPos, newYPos);
 
-        _anim.UpdateMovementAnim(velocity.x, velocity.y);
+        if(_anim != null)
+        {
+            _anim.UpdateMovementAnim(velocity);
+        }
+        
 
-        Debug.Log("curent position: " + transform.position.x + " bound X " + xMin + " - " + xMax);
+        //Debug.Log("curent position: " + transform.position.x + " bound X " + xMin + " - " + xMax);
     }
 
     private void SetUpMoveBoundaries()

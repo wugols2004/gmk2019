@@ -9,8 +9,12 @@ public class CarAnimController : MonoBehaviour, IAnimController
 
     SpriteRenderer _sprite;
 
-    public void UpdateMovementAnim(float x, float y)
+    public void UpdateMovementAnim(Vector2 velocity)
     {
+        float x = velocity.x;
+        float y = velocity.y;
+            
+
         if (x > 0)
         {
             if (y > 0)

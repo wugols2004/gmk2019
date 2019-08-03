@@ -3,5 +3,5 @@ using System.Collections;
 
 public interface IAnimController
 {
-     void UpdateMovementAnim(float x, float y);
+     void UpdateMovementAnim(Vector2 velocity);
 }
