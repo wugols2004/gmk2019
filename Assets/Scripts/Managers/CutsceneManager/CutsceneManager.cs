@@ -1,18 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class CutsceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
         
+
+    public PlayableDirector director;
+    public List<TimelineAsset> timelines;
+
+    private void Awake()
+    {
+        director = GetComponent<PlayableDirector>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayFromTimelines(int index)
     {
-        
+        TimelineAsset selectedAsset;
+
+        if (timelines.Count <= index)
+        {
+            selectedAsset = timelines[timelines.Count - 1];
+        }
+        else
+        {
+            selectedAsset = timelines[index];
+        }
+
+        director.Play(selectedAsset);
     }
 }

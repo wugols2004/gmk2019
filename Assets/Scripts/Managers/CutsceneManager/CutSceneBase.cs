@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum CutSceneState
 {
@@ -13,6 +14,8 @@ public class CutSceneBase : MonoBehaviour
 {
 
     private bool isDestroyOnEnd;
+
+    public UnityEvent onEnter;
 
 
     CutSceneState state;
@@ -34,6 +37,12 @@ public class CutSceneBase : MonoBehaviour
     {
         state = CutSceneState.ACTIVE;
         Debug.Log("STARTCUTSCENE TEST");
+
+        if(onEnter != null)
+        {
+            onEnter.Invoke();
+        }
+        
     }
 
     public virtual void EndCutScene()

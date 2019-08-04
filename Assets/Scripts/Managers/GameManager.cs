@@ -23,6 +23,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject GameOverScreen;
 
+    //[SerializeField]
+    //Color day;
+
+    [SerializeField]
+    Color nightColor;
+
+    Color currentColor = Color.white;
+
+    float timeSpeed = 0.05f; 
+
     GameState state;
 
     void StartTitleScreen()
@@ -55,6 +65,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Make the ambient lighting red
+
         ChangeState(GameState.TITLE);
     }
 
@@ -70,5 +82,11 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
+
+        
+
+        RenderSettings.ambientLight = Color.Lerp(Color.white, nightColor, Mathf.PingPong(Time.time * timeSpeed, 1));
+
+        
     }
 }
